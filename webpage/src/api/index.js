@@ -1,0 +1,22 @@
+import { serviceJson } from './axios.js'
+
+export const fetchColumnList = () => {
+    return serviceJson({
+        url: '/api/column/list',
+        method: 'get'
+    })
+}
+
+export const fetchSlideImages = () => {
+    return serviceJson({
+        url: '/api/article/slide_images',
+        method: 'get'
+    })
+}
+
+export const fetchFriendLink = () => {
+    return serviceJson({
+        url: '/api/article/friend_link',
+        method: 'get'
+    })
+}

@@ -1,0 +1,4 @@
+export const globalConstants = {
+    COLUMN_DATA_SESSION_STORAGE_KEY: 'COLUMN_DATA_KEY',
+    LINK_DATA_SESSION_STORAGE_KEY: 'LINK_DATA_KEY'
+}
