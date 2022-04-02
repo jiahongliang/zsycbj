@@ -20,3 +20,11 @@ export const fetchFriendLink = () => {
         method: 'get'
     })
 }
+
+export const fetchArticleList = (data) => {
+    return serviceJson({
+        url: '/api/article/all_list',
+        method: 'POST',
+        data
+    })
+}

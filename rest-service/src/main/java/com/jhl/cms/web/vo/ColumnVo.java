@@ -21,5 +21,14 @@ public class ColumnVo {
     private Integer orderValue;
     private String memo;
 
+    /**
+     * 祖先id，根据父子级关系为先后顺序排列
+     */
+    private List<Long> forefathersId;
+    /**
+     * 子孙Id，不包括自己
+     */
+    private List<Long> descendantsId;
+
     private List<ColumnVo> children;
 }

@@ -26,10 +26,10 @@ public class ColumnController {
     @GetMapping("list")
     public List<ColumnVo> commonColumnList() {
         List<CmsColumn> lst = columnRepository.findAllByParentIsNullAndPropertyOrderByOrderValue(Constants.COLUMN_PROPERTY_COMMON);
-        return toVo(lst);
+        return toVo(lst, new ArrayList<>(), new ArrayList<>());
     }
 
-    private List<ColumnVo> toVo(List<CmsColumn> columns) {
+    private List<ColumnVo> toVo(List<CmsColumn> columns, List<Long> forefathersId, List<Long> descendantsId) {
         List<ColumnVo> result = new ArrayList<>();
         if (columns != null || columns.size() > 0) {
             columns.forEach((e) -> {
@@ -44,11 +44,18 @@ public class ColumnController {
                     vo.setIconId(e.getIconId());
                     vo.setOrderValue(e.getOrderValue());
                     vo.setMemo(e.getMemo());
+                    vo.setForefathersId(forefathersId);
+                    descendantsId.add(vo.getId());
+                    List<Long> newDescendantsId = new ArrayList<>();
                     if (e.getChildren() != null && e.getChildren().size() > 0) {
-                        vo.setChildren(toVo(e.getChildren()));
+                        List<Long> newForefathersId = new ArrayList<>();
+                        newForefathersId.addAll(forefathersId);
+                        newForefathersId.add(vo.getId());
+                        vo.setChildren(toVo(e.getChildren(), newForefathersId, newDescendantsId));
                     } else {
                         vo.setChildren(new ArrayList<>());
                     }
+                    vo.setDescendantsId(newDescendantsId);
                     result.add(vo);
                 }
             });

@@ -59,6 +59,16 @@ public interface CmsArticleRepository extends JpaRepository<CmsArticle, Long> {
     public Page<CmsArticle> findByColumnId(@Param("columnId") Long columnId, Pageable pageable);
 
     /**
+     * 根据多个栏目id查询文章列表
+     *
+     * @param columnIds
+     * @param pageable
+     * @return
+     */
+    @RestResource(path = "column-ids_page")
+    public Page<CmsArticle> findAllByColumnIdIn(@Param("columnIds") Long[] columnIds, Pageable pageable);
+
+    /**
      * 根据栏目id和标题查询文章列表
      *
      * @param columnId

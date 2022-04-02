@@ -36,6 +36,15 @@ public class ArticleController {
         return articleRepository.findByColumnId(req.getEntity().getColumnId(), pageable);
     }
 
+    @PostMapping("all_list")
+    Page<CmsArticle> allArticleList(@RequestBody WebReq<CmsArticle, Long[]> req) {
+        Assert.notNull(req.getExt(), "请求数据不能为空");
+
+        Sort sort = Sort.by(Sort.Direction.ASC, "orderValue").and(Sort.by(Sort.Direction.DESC, "id"));
+        Pageable pageable = PageRequest.of(req.getPageNum() - 1, req.getPageSize(), sort);
+        return articleRepository.findAllByColumnIdIn(req.getExt(), pageable);
+    }
+
     @GetMapping("info/{id}")
     CmsArticle articleInfo(@PathVariable("id") Long id) {
         Assert.notNull(id, "请求数据不能为空");

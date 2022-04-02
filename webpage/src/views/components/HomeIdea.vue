@@ -1,62 +1,69 @@
 <template>
-    <div class="homeBox homeIdear">
-        <div class="wrap">
-            <div class="homeTitle">
-                <h2>办学理念</h2>
-                <h3>
-                    <span>
-                        The idea of running a school
-                    </span>
-                </h3>
-                <div class="line"></div>
+  <div class="homeBox homeIdear">
+    <div class="wrap">
+      <div class="homeTitle">
+        <h2>{{columnName}}</h2>
+        <h3>
+          <span> {{columnEnName}} </span>
+        </h3>
+        <div class="line"></div>
+      </div>
+      <div class="homeIdearWrap">
+        <ul class="slideHomeIdear clearfloat">
+          <li v-for="(item) in articleData" :key="item.id">
+            <h3>{{item.title}}</h3>
+            <div class="line"></div>
+            <div class="pic">
+              <img v-if="item.iconId" :src="'/api/attachment/get/' + item.iconId" />
+              <img v-else src="../../assets/images/default-banner.jpg"/>
             </div>
-            <div class="homeIdearWrap">
-                <ul class="slideHomeIdear clearfloat">
-                    <li>
-                        <h3>1某某教育</h3>
-                        <div class="line"></div>
-                        <div class="pic">
-                            <img src="../../assets/images/home_idear_img1.jpg">
-                        </div>
-                        <p>
-							从住宅配套到城市配套，从房子需求到客户需求，广州某某黑户需求，广州某某黑户需求，广州某某黑利伯瑞书院将是亲自然的学习乐园，而不是传统的学校注重更大面积的通风、采光……
-						</p>
-                    </li>
-                    <li>
-                        <h3>2某某教育</h3>
-                        <div class="line"></div>
-                        <div class="pic">
-                            <img src="../../assets/images/home_idear_img2.jpg">
-                        </div>
-                        <p>
-							从住宅配套到城市配套，从房子需求到客户需求，广州某某黑户需求，广州某某黑户需求，广州某某黑利伯瑞书院将是亲自然的学习乐园，而不是传统的学校注重更大面积的通风、采光……
-						</p>
-                    </li>
-                    <li>
-                        <h3>3某某教育</h3>
-                        <div class="line"></div>
-                        <div class="pic">
-                            <img src="../../assets/images/home_idear_img3.jpg">
-                        </div>
-                        <p>
-							从住宅配套到城市配套，从房子需求到客户需求，广州某某黑户需求，广州某某黑户需求，广州某某黑利伯瑞书院将是亲自然的学习乐园，而不是传统的学校注重更大面积的通风、采光……
-						</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
+            <p>
+              {{item.resume}}
+            </p>
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
 </template>
 <script>
+import { mapState } from "vuex";
+import {fetchArticleList} from '@/api/index.js'
+
 export default {
-  name: 'HomeIdeaComponent',
+  name: "HomeIdeaComponent",
   data() {
     return {
-    }
+        columnName: '栏目名称',
+        columnEnName: 'Column Name',
+        articleData: []
+    };
   },
-  mounted(){  
+  mounted() {
+      if(this.columnData && this.columnData.length > 0) {
+        this.columnName = this.columnData[0].name;
+        this.columnEnName = this.columnData[0].enName;
+        const columnIds = this.columnData[0].descendantsId;
+        columnIds.push(this.columnData[0].id);
+        let data = {
+            ext: columnIds,
+            pageNum: 1,
+            pageSize: 3
+        }
+        fetchArticleList(data).then((res) => {
+            this.articleData = res.data.content;
+        });
+      }
+  },
+  computed: {
+    ...mapState({ columnData: (state) => state.cms.columnData }),
   }
-}
+};
 </script>
 <style scoped>
+    .pic {
+        overflow: hidden;
+        height: 0;
+        padding-bottom: 56%;
+    }
 </style>
