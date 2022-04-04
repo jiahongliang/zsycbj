@@ -28,6 +28,15 @@ public interface CmsArticleRepository extends JpaRepository<CmsArticle, Long> {
     public List<CmsArticle> findAllByColumnPropertyOrderByIdDesc(@Param("value") Integer columnProperty);
 
     /**
+     * 根据columnProperty属性查询，不排序
+     *
+     * @param columnProperty
+     * @return
+     */
+    @RestResource(path = "column-property-unorder")
+    public List<CmsArticle> findAllByColumnProperty(@Param("value") Integer columnProperty);
+
+    /**
      * 根据columnProperty属性查询，并根据title模糊搜索，分页
      *
      * @param title

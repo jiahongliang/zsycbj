@@ -131,7 +131,7 @@ export default {
         columnProperty: this.dataForm.columnProperty,
         page: this.page - 1,
         size: this.size,
-        sort: 'id,desc'
+        sort: 'id,asc'
       }
       loadArticlesByTitleAndColumnProperty(searchData).then(res => {
         this.tableData = res.data._embedded.cmsArticles

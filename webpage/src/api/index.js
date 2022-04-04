@@ -28,3 +28,10 @@ export const fetchArticleList = (data) => {
         data
     })
 }
+
+export const loadArticle = id => {
+    return serviceJson({
+        url: '/api/article/info/' + id,
+        method: 'GET'
+    })
+}

@@ -62,6 +62,6 @@ public class ArticleController {
 
     @GetMapping("friend_link")
     List<CmsArticle>  friendLinks() {
-        return articleRepository.findAllByColumnPropertyOrderByIdDesc(Constants.COLUMN_PROPERTY_LINK);
+        return articleRepository.findAllByColumnProperty(Constants.COLUMN_PROPERTY_LINK);
     }
 }

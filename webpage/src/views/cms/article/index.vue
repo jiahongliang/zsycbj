@@ -1,97 +1,68 @@
 <template>
     <div>
         <div class="newsDetailH">
-            <h3>如何为孩子挑选安全又放心的夏令营？知道这几点就够了</h3>
-            <p><span>时间：2018-11-06 </span><span>来源：梅沙教育</span></p>
+            <h3>{{article.title}}</h3>
+            <p><span v-if="article.author">作者：{{article.author}} </span><span v-if="article.pubDate">时间：{{article.pubDate}} </span><span v-if="article.source">来源：{{article.source}}</span></p>
         </div>
         <div class="newsDetailCont">
-            <div class="pic picCenter"><img src="../../../assets/images/course_d_img.jpg"/></div>
-            <p>
-                为什么说“终身学习的能力”是孩子核心的竞争力呢？
-            </p>
-            <p>
-                随着时代的演进，技术被不断突破，审美被迭代，很多知识会过时，很多岗位会消失，一些专业性的技能随着整个行业的迭代更新而变得毫无用武之地。
-            </p>
-            <p>
-                我们的教育最应该传授的，不是具体的知识，不是专业化精细的技能，而是终身学习的能力、以及对知识的热爱，对学习的终生热爱。
-            </p>
-            <p>
-                耶鲁大学的校长查理德·莱文曾经说过：“理想的教育所达到的境界：就是教育不教任何专业化的知识和技能，但却能让人胜任任何学科和职业。”
-            </p>
-            <p>
-                应该如何培养孩子成为一个终身的学习者呢？集记者、大学教师、创业者、投资人等多重身份于一身的王春玲老师提出“一个核心，五个方法”，帮助培养孩子的终身学习能力。
-            </p>
-            <p>
-                不给孩子设限，保护好奇心，而且给学有余力的孩子充分的自主选择权。只要你有能力，知识探索是没有边界的。
-            </p>
-            <p>
-                美国教育对于学有余力的学生提供了足够多的“加餐”，只要你想学，你可以随时选修高年级的课程。即使是同一个年级同一个班的学生，正在学的课程可能相差很大。
-            </p>
-            <p>
-                在10年级的时候，高中学生甚至可以选修部分大学课程，孩子可以直接到附近的社区大学学习。我认识一个亚裔高中生，在申请大学生时甚至能提供出15门大学课程全满分的成绩单。
-            </p>
-            <div class="pic picCenter picCont"><img src="../../../assets/images/news_d_img1.jpg"/></div>
-            <p>
-                中国教育要补短，美国教育要扬长，其实我们知道孩子这一生的闪光点一定在长板上，所以要在孩子的长板上深度发掘，多花时间，让长板更长。
-            </p>
-            <p>
-                要帮孩子建立知识的链接，孤立的知识是毫无意义的，只有系统性的知识才有价值。教会孩子将一个知识点与其前后左右相关知识点建立联系，形成系统。
-            </p>
-            <p>
-                当孩子对一个陌生的知识感兴趣时，不仅要告诉他这个知识本身，还要教孩子把它和已有的知识或生活链接起来，并引导孩子以最简单的方式进行应用。为什么说“终身学习的能力”是孩子核心的竞争力呢？
-            </p>
-            <p>
-                随着时代的演进，技术被不断突破，审美被迭代，很多知识会过时，很多岗位会消失，一些专业性的技能随着整个行业的迭代更新而变得毫无用武之地。
-            </p>
-            <p>
-                我们的教育最应该传授的，不是具体的知识，不是专业化精细的技能，而是终身学习的能力、以及对知识的热爱，对学习的终生热爱。
-            </p>
-            <p>
-                耶鲁大学的校长查理德·莱文曾经说过：“理想的教育所达到的境界：就是教育不教任何专业化的知识和技能，但却能让人胜任任何学科和职业。”
-            </p>
-            <p>
-                应该如何培养孩子成为一个终身的学习者呢？集记者、大学教师、创业者、投资人等多重身份于一身的王春玲老师提出“一个核心，五个方法”，帮助培养孩子的终身学习能力。
-            </p>
-            <p>
-                不给孩子设限，保护好奇心，而且给学有余力的孩子充分的自主选择权。只要你有能力，知识探索是没有边界的。
-            </p>
-            <ul class="picList clearfloat">
-                <li><div class="pic"><img src="../../../assets/images/news_d_img2.jpg"/></div></li>
-                <li><div class="pic"><img src="../../../assets/images/news_d_img3.jpg"/></div></li>
-            </ul>
-            <!--<p>
-                美国教育对于学有余力的学生提供了足够多的“加餐”，只要你想学，你可以随时选修高年级的课程。即使是同一个年级同一个班的学生，正在学的课程可能相差很大。
-            </p>
-            <p>
-                在10年级的时候，高中学生甚至可以选修部分大学课程，孩子可以直接到附近的社区大学学习。我认识一个亚裔高中生，在申请大学生时甚至能提供出15门大学课程全满分的成绩单。
-            </p>
-            <p>
-                中国教育要补短，美国教育要扬长，其实我们知道孩子这一生的闪光点一定在长板上，所以要在孩子的长板上深度发掘，多花时间，让长板更长。
-            </p>
-            <p>
-                要帮孩子建立知识的链接，孤立的知识是毫无意义的，只有系统性的知识才有价值。教会孩子将一个知识点与其前后左右相关知识点建立联系，形成系统。
-            </p>
-            <p>
-                当孩子对一个陌生的知识感兴趣时，不仅要告诉他这个知识本身，还要教孩子把它和已有的知识或生活链接起来，并引导孩子以最简单的方式进行应用。
-            </p>-->
+            <div class="pic picCenter"><img :src="'/api/attachment/get/' + article.iconId"/></div>
+            <p> &nbsp; </p>
+            <p class="contentTitle"><i class="el-icon-caret-right"></i> 摘要</p>
+            <p v-text="article.resume"></p>
+            <p> &nbsp; </p>
+            <p class="contentTitle"><i class="el-icon-caret-right"></i> 正文</p>
+            <p v-html="article.content" class="contentDetail"></p>
         </div>
-        <div class="pageJump">
-            <p><a href="">上一篇：深圳罗湖走失女孩被找到！注意降低孩子走失的风险！ </a></p>
-            <p><a href="">下一篇：教育小知识，6大妙招让孩子在寒冷的冬季少生病</a></p>                                                                 
-        </div>
+        <!-- div class="pageJump">
+            <p><a href="">上一篇： </a></p>
+            <p><a href="">下一篇：</a></p>                                                                 
+        </div -->
     </div>
 </template>
 <script>
+import { loadArticle } from "@/api/index.js";
 export default {
   data() {
     return {
+        aid: null,
+        article: {}
     }
   },
   mounted(){  
+      this.loadArticle();
+  },
+  watch: {
+      '$route.query.aid': function () {
+          this.loadArticle();
+      }
+  },
+  methods: {
+      loadArticle() {
+          let aid = this.$route.query.aid;
+          this.aid = null;
+          this.article = {}
+          if(aid) {
+              this.aid = aid * 1;
+              loadArticle(this.aid).then(res => {
+                  this.article = res.data;
+              });
+          }
+      }
   }
 }
 </script>
 
-<style scoped>
+<style>
+.newsDetailCont p.contentTitle {
+    text-indent: 0px;
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 1px dashed #999999;
+    margin-bottom: 10px;
+}
+.newsDetailCont p{
+    text-align: left;
+    text-indent: 32px;
+}
 
 </style>

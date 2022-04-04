@@ -37,7 +37,7 @@ export default {
       activeIndex: function () {
           let cid = this.$route.query.cid;
           if(cid && cid.trim().length > 0) {
-              return cid + '';
+              return cid ;
           }
           return '0';
       },
@@ -58,6 +58,7 @@ export default {
   },
   methods: {
     getActiveIndexClass(indexId){
+        indexId = indexId + '';
         if (this.activeIndex === indexId) {
             return 'active';
         }

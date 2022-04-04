@@ -1,71 +1,207 @@
 <template>
-    <div>
-        <ul class="courseList">
-            <li class="clearfloat">
-                <div class="pic"><a href="/#/article_info?aid=1"><img src="../../../assets/images/course_img1.jpg"/></a></div>
-                <div class="cont">
-                    <h3 class="single-line"><a :href="'/#/article_info?aid=1'">海外营｜日本教育旅行，多元文化成长营</a></h3>
-                    <p>我从没想过做一个育儿专家，事实上，我本身对育儿也没什么兴趣。只是因为当今有一种育儿方式，会把孩子搞得一团糟，阻碍他们个人特质的培养。这种育儿方式，正大行其道。</p>
-                </div>
-            </li>
-            <li class="clearfloat">
-                <div class="pic"><a href="/#/article_info?aid=1"><img src="../../../assets/images/course_img1.jpg"/></a></div>
-                <div class="cont">
-                    <h3 class="single-line"><a href="/#/article_info?aid=1">海外营｜日本教育旅行，多元文化成长营</a></h3>
-                    <p>我从没想过做一个育儿专家，事实上，我本身对育儿也没什么兴趣。只是因为当今有一种育儿方式，会把孩子搞得一团糟，阻碍他们个人特质的培养。这种育儿方式，正大行其道。</p>
-                </div>
-            </li>
-            <li class="clearfloat">
-                <div class="pic"><a href="/#/article_info?aid=1"><img src="../../../assets/images/course_img1.jpg"/></a></div>
-                <div class="cont">
-                    <h3 class="single-line"><a href="/#/article_info?aid=1">海外营｜日本教育旅行，多元文化成长营</a></h3>
-                    <p>我从没想过做一个育儿专家，事实上，我本身对育儿也没什么兴趣。只是因为当今有一种育儿方式，会把孩子搞得一团糟，阻碍他们个人特质的培养。这种育儿方式，正大行其道。</p>
-                </div>
-            </li>
-            <li class="clearfloat">
-                <div class="pic"><a href="/#/article_info?aid=1"><img src="../../../assets/images/course_img1.jpg"/></a></div>
-                <div class="cont">
-                    <h3 class="single-line"><a href="/#/article_info?aid=1">海外营｜日本教育旅行，多元文化成长营</a></h3>
-                    <p>我从没想过做一个育儿专家，事实上，我本身对育儿也没什么兴趣。只是因为当今有一种育儿方式，会把孩子搞得一团糟，阻碍他们个人特质的培养。这种育儿方式，正大行其道。</p>
-                </div>
-            </li>
-            <li class="clearfloat">
-                <div class="pic"><a href="/#/article_info?aid=1"><img src="../../../assets/images/course_img1.jpg"/></a></div>
-                <div class="cont">
-                    <h3 class="single-line"><a href="/#/article_info?aid=1">海外营｜日本教育旅行，多元文化成长营</a></h3>
-                    <p>我从没想过做一个育儿专家，事实上，我本身对育儿也没什么兴趣。只是因为当今有一种育儿方式，会把孩子搞得一团糟，阻碍他们个人特质的培养。这种育儿方式，正大行其道。</p>
-                </div>
-            </li>
-        </ul>
-        
-        <div class="page">
-            <em>首页</em>
-            <i>上一页</i>
-            <a class="active" href="javascript:">1</a>
-            <a href="javascript:">2</a>
-            <a href="javascript:">3</a>
-            <a href="javascript:">4</a>
-            <a href="javascript:">5</a>
-            <a href="javascript:">6</a>
-            <i>下一页</i>
-            <em>尾页</em>
-            <p>第<span>1</span>页/共<span>20</span>页</p>
+  <div>
+    <ul class="courseList">
+      <li class="clearfloat" v-for="(item, index) in articleData" :key="index">
+        <div class="pic">
+          <a
+            :href="
+              '/#/article_info?aid=' +
+              item.id +
+              '&cid=' +
+              cid +
+              '&dcid=' +
+              item.columnId
+            "
+            ><img :src="item.imgUrl"
+          /></a>
         </div>
+        <div class="cont">
+          <h3 class="single-line">
+            <a
+              :href="
+                '/#/article_info?aid=' +
+                item.id +
+                '&cid=' +
+                cid +
+                '&dcid=' +
+                item.columnId
+              "
+              >{{ item.title }}</a
+            >
+          </h3>
+          <p>
+            {{ item.resume }}
+          </p>
+        </div>
+      </li>
+    </ul>
+
+    <div class="el-page-wrapper">
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="pageNum"
+        :page-sizes="[10, 20, 30, 40, 50]"
+        :page-size="pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
+      >
+      </el-pagination>
     </div>
+  </div>
 </template>
 <script>
+import { mapState } from "vuex";
+import { fetchArticleList } from "@/api/index.js";
+
 export default {
   data() {
     return {
-    }
+      cid: null,
+      dcid: null,
+      articleData: [],
+      pageNum: 1,
+      pageSize: 10,
+      total: 0,
+    };
   },
-  beforeMount() {
+  computed: {
+    ...mapState({ columnData: (state) => state.cms.columnData }),
   },
-  mounted(){  
-  }
-}
+  beforeMount() {},
+  mounted() {
+    this.loadArticleData();
+  },
+  watch: {
+    "$route.query.cid": function () {
+      this.loadArticleData();
+    },
+    "$route.query.dcid": function () {
+      this.loadArticleData();
+    },
+    columnData: function () {
+      this.loadArticleData();
+    },
+  },
+  methods: {
+    loadArticleData() {
+      let dcid = this.$route.query.dcid;
+      let cid = this.$route.query.cid;
+      let columnIds = [];
+      this.articleData = [];
+
+      if (dcid) {
+        this.dcid = dcid * 1;
+      }
+      if (cid) {
+        this.cid = cid * 1;
+        let column = null;
+        for (let i in this.columnData) {
+          if (this.columnData[i] && this.columnData[i].id === this.cid) {
+            column = this.columnData[i];
+            columnIds = [];
+            columnIds = [...this.columnData[i].descendantsId];
+            columnIds.push(this.cid);
+            break;
+          }
+        }
+
+        if (dcid && column && column.children) {
+          this.dcid = dcid * 1;
+          for (let j in column.children) {
+            if (column.children[j] && column.children[j].id === this.dcid) {
+              columnIds = [];
+              columnIds = [...column.children[j].descendantsId];
+              columnIds.push(this.dcid);
+              break;
+            }
+          }
+        }
+      }
+
+      if (columnIds.length > 0) {
+        let data = {
+          ext: columnIds,
+          pageNum: this.pageNum,
+          pageSize: this.pageSize,
+        };
+        fetchArticleList(data).then((res) => {
+          if (res.data && res.data.content && res.data.content.length > 0) {
+            this.articleData = res.data.content;
+            this.total = res.data.totalElements;
+            this.articleData.map((item) => {
+              item.imgUrl = "/api/attachment/get/" + item.iconId;
+            });
+          }
+        });
+      }
+    },
+    handleSizeChange(v) {
+      this.pageSize = v;
+      this.loadArticleData();
+    },
+    handleCurrentChange(v) {
+      this.pageNum = v;
+      this.loadArticleData();
+    },
+  },
+};
 </script>
 
 <style scoped>
+.el-page-wrapper {
+  text-align: center;
+  margin-top: 10px;
+}
 
+@media (max-width: 1920px) {
+  .courseList {
+    min-height: 390px;
+  }
+}
+
+@media (max-width: 1680px) {
+  .courseList {
+    min-height: 430px;
+  }
+}
+@media (max-width: 1440px) {
+  .courseList {
+    min-height: 430px;
+  }
+}
+@media (max-width: 1366px) {
+  .courseList {
+    min-height: 430px;
+  }
+}
+@media (max-width: 1280px) {
+  .courseList {
+    min-height: 450px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .courseList {
+    min-height: 470px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .courseList {
+    min-height: 470px;
+  }
+}
+
+@media (max-width: 992px) {
+  .courseList {
+    min-height: 450px;
+  }
+}
+
+@media (max-width: 768px) {
+  .courseList {
+    min-height: 480px;
+  }
+}
 </style>
