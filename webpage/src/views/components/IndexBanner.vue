@@ -1,7 +1,7 @@
 <template>
     <el-carousel :interval="5000" arrow="always" height="0">
         <el-carousel-item v-for="item in slideImageData" :key="item.id">
-        <a :href="item.url ? item.url : '#'"><img :src="item.iconUrl"/></a>
+          <a :href="item.url ? item.url : '#'"><img :src="item.iconUrl"/></a>
         </el-carousel-item>
   </el-carousel>
 </template>

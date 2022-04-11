@@ -2,7 +2,7 @@
   <div class="homeBox homeJoin">
     <div class="wrap">
       <div class="homeTitle">
-        <h2>{{ columnName }}</h2>
+        <h2><a :href="'/#/article_list?cid=' + columnId">{{ columnName }}</a></h2>
         <h3>
           <span>{{ columnEnName }}</span>
         </h3>
@@ -42,6 +42,7 @@ export default {
     return {
       columnName: "新闻中心",
       columnEnName: "News Center",
+      columnId: null,
       articleData: [
         {
           title: "招聘专区",
@@ -74,6 +75,7 @@ export default {
       if (this.columnData && this.columnData.length > column_index) {
         this.columnName = this.columnData[column_index].name;
         this.columnEnName = this.columnData[column_index].enName;
+        this.columnId = this.columnData[column_index].id;
         let columnIds = this.columnData[column_index].descendantsId;
         columnIds.push(this.columnData[column_index].id);
         let data = {

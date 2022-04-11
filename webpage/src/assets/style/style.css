@@ -502,7 +502,7 @@ i {font-style: normal;}
 	/*#banner .bx-wrapper .bx-pager:before, 
 	#banner .bx-wrapper .bx-pager:after {width: 418px;}*/
 	
-	#top .logo {width: 150px;}
+	#top .logo {width: 280px;}
 	
 	.homeIdearWrap {padding: 0 40px;}
 	#top .nav {margin-left: 4%;}
@@ -550,7 +550,7 @@ i {font-style: normal;}
 	
 	#top.topHome {background: #00CA9D;}
 	#top {height: 58px; line-height: 58px; background: #00CA9D;}
-	#top .logo {width: 128px; position: relative; z-index: 99;}
+	#top .logo {width: 180px; position: relative; z-index: 99;}
 	.topRight {margin-top: 12px; height: 34px; line-height: 34px;} 
 	#top .nav {position: fixed;	width: 240px; height: 100%; margin: 0; left: -100%; top: 0; background: #00CA9D; z-index: 88; }
 	#top .nav ul {height: calc(100% - 60px); margin-top: 60px; padding-bottom: 30px; box-sizing: border-box; overflow: auto;}
@@ -665,7 +665,7 @@ i {font-style: normal;}
 @media (max-width: 768px) {
 	.topRight {margin-right: 46px; position: relative; z-index: 99;}
 	.topSearch {margin-left: 4px;}
-	#top .logo {width: 116px;}
+	#top .logo {width: 150px;}
 	.topSearch {width: 28px;}
 	#top .nav {width: 200px;}
 	.topLang {padding-right: 16px;}

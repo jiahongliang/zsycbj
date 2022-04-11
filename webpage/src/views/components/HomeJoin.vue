@@ -3,7 +3,7 @@
     <div class="homeBox homeJoin">
       <div class="wrap">
           <div class="homeTitle">
-            <h2>{{ columnName }}</h2>
+            <h2><a :href="'/#/article_list?cid=' + columnId">{{ columnName }}</a></h2>
             <h3>
               <span>{{ columnEnName }}</span>
             </h3>
