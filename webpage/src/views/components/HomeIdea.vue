@@ -45,6 +45,11 @@ export default {
   mounted() {
     this.loadArticleData();
   },
+  watch: {
+    columnData: function () {
+      this.loadArticleData();
+    },
+  },
   computed: {
     ...mapState({ columnData: (state) => state.cms.columnData }),
   },

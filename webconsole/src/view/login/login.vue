@@ -7,7 +7,7 @@
     <div class="login-con">
       <Card icon="log-in" title="欢迎登录" :bordered="false">
         <div class="form-con">
-          <login-form @on-success-valid="handleSubmit"></login-form>
+          <login-form @on-success-valid="handleSubmit" ref="loginForm"></login-form>
           <p v-if="loginResultInfo.length > 0" style="color:red;font-size:12px" v-text="loginResultInfo"></p>
         </div>
       </Card>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { Base64 } from 'js-base64'
 import LoginForm from '_c/login-form'
 import { mapActions } from 'vuex'
 export default {
@@ -27,14 +28,21 @@ export default {
       'handleLogin',
       'getUserInfo'
     ]),
-    handleSubmit ({ userName, password }) {
-      this.handleLogin({ userName, password }).then(res => {
+    handleSubmit ({ userName, password, verifyCode }) {
+      let loginJson = {
+        userName,
+        password,
+        verifyCode
+      }
+      let loginToken = Base64.encode(JSON.stringify(loginJson))
+      this.handleLogin(loginToken).then(res => {
         this.getUserInfo().then(res => {
           this.$router.push({
             name: this.$config.homeName
           })
         })
       })
+      this.$refs.loginForm.fetchVerifyCode()
     }
   },
   computed: {

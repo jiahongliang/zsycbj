@@ -4,7 +4,9 @@ import router from '@/router'
 import { Message } from 'iview'
 // import { Spin } from 'iview'
 const addErrorLog = errorInfo => {
-  const { statusText, status, request: { responseURL } } = errorInfo
+  // const { statusText, status, request: { responseURL } } = errorInfo
+  const { status, request: { responseURL } } = errorInfo
+  /*
   let info = {
     type: 'ajax',
     code: status,
@@ -12,10 +14,13 @@ const addErrorLog = errorInfo => {
     url: responseURL
   }
   if (!responseURL.includes('save_error_logger')) store.dispatch('addErrorLog', info)
+  */
   if (status === 401) {
     store.dispatch('handle401Error')
-    Message.error('未登录或登录已过期')
-    router.push('/login')
+    if (!responseURL.includes('/api/login')) {
+      Message.error('未登录或登录已过期')
+      router.push('/login')
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-import {globalConstants} from '@/lib/global'
+// import {globalConstants} from '@/lib/global'
 import {fetchColumnList,fetchFriendLink} from '@/api/index.js'
 
 export default {
@@ -24,14 +24,14 @@ export default {
     },
     actions: {
         fetchColumnData({state, commit}) {
-            let columnData = window.sessionStorage.getItem(globalConstants.COLUMN_DATA_SESSION_STORAGE_KEY)
+            let columnData = []; //window.sessionStorage.getItem(globalConstants.COLUMN_DATA_SESSION_STORAGE_KEY)
             if (!columnData || columnData.length === 0) {
                 if(!state.columnDataLoading) {
                     commit('setColumnDataLoading', true);
                     fetchColumnList().then( (res) => {
                         if(res.data && res.data.length > 0) {
                             columnData = res.data;
-                            window.sessionStorage.setItem(globalConstants.COLUMN_DATA_SESSION_STORAGE_KEY,JSON.stringify(columnData));
+                            // window.sessionStorage.setItem(globalConstants.COLUMN_DATA_SESSION_STORAGE_KEY,JSON.stringify(columnData));
                             commit('setColumnData',columnData)
                         }
                         commit('setColumnDataLoading', false);
@@ -47,14 +47,14 @@ export default {
             }
         },
         fetchLinkData({state, commit}) {
-            let linkData = window.sessionStorage.getItem(globalConstants.LINK_DATA_SESSION_STORAGE_KEY)
+            let linkData = []; // window.sessionStorage.getItem(globalConstants.LINK_DATA_SESSION_STORAGE_KEY)
             if (!linkData || linkData.length === 0) {
                 if(!state.linkDataLoading) {
                     commit('setLinkDataLoading', true);
                     fetchFriendLink().then( (res) => {
                         if(res.data && res.data.length > 0) {
                             linkData = res.data;
-                            window.sessionStorage.setItem(globalConstants.LINK_DATA_SESSION_STORAGE_KEY,JSON.stringify(linkData));
+                            // window.sessionStorage.setItem(globalConstants.LINK_DATA_SESSION_STORAGE_KEY,JSON.stringify(linkData));
                             commit('setLinkData', linkData);
                         }
                         commit('setLinkDataLoading', false);
