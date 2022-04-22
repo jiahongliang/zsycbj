@@ -1,6 +1,6 @@
 # Web Pages for ZSYC
 
-The project is based on vue 2.5.10, and using [ElementUI](https://element.eleme.io) as Component Library.
+The project is based on vue 2.5.10, using [ElementUI](https://element.eleme.io) as Component Library. The shared data ('Cms Column Data') is saved in 'biz' module of the Store.
 
 ## Project setup
 ```
