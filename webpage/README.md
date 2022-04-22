@@ -1,4 +1,6 @@
-# cms_webpages
+# Web Pages for ZSYC
+
+The project is based on vue 2.5.10, and using [ElementUI](https://element.eleme.io) as Component Library.
 
 ## Project setup
 ```
