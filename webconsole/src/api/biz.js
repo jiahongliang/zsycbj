@@ -76,3 +76,31 @@ export const deleteColumn = id => {
     method: 'delete'
   })
 }
+
+export const loadMemRegistrationByCompleteFlag = data => {
+  let url = '/api/data/mem-registration/search/complete-flag_page'
+  if (data && data.completeFlag && data.completeFlag.trim().length > 0) {
+    url = url + '?completeFlag=' + data.completeFlag + '&page=' + data.page + '&size=' + data.size + '&sort=' + data.sort
+  } else {
+    url = url + '?page=' + data.page + '&size=' + data.size + '&sort=' + data.sort
+  }
+  return axios.request({
+    url: url,
+    method: 'get'
+  })
+}
+
+export const deleteMemRegistration = id => {
+  return axios.request({
+    url: '/api/data/mem-registration/' + id,
+    method: 'delete'
+  })
+}
+
+export const saveMemRegistration = registration => {
+  return axios.request({
+    url: '/api/data/mem-registration',
+    data: registration,
+    method: 'post'
+  })
+}

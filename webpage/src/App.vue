@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 export default {
   name: 'App',
   data() {
@@ -14,13 +13,10 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['fetchColumnData', 'fetchLinkData']),
   },
   beforeMount() {
   },
   mounted(){
-    this.fetchColumnData();
-    this.fetchLinkData();
   }
 }
 </script>

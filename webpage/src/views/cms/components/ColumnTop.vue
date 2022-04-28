@@ -30,7 +30,7 @@ export default {
         cid = cid * 1;
         if(this.columnData && this.columnData.length > 0) {
           for(let i = 0; i< this.columnData.length; i++) {
-            console.log(typeof(cid),typeof(this.columnData[i].id))
+            // console.log(typeof(cid),typeof(this.columnData[i].id))
             if(cid === this.columnData[i].id) {
               this.bgImgUrl = "/api/attachment/get/" + this.columnData[i].iconId + "";
               break;

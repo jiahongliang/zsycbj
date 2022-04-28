@@ -167,6 +167,25 @@ export default [
     ]
   },
   {
+    path: '/mem_registration',
+    name: 'mem_registration',
+    meta: {
+      hideInBread: true
+    },
+    component: Main,
+    children: [
+      {
+        path: 'mem_registration_page',
+        name: 'mem_registration_page',
+        meta: {
+          icon: 'ios-people',
+          title: '注册信息'
+        },
+        component: () => import('@/view/mem-registration/index.vue')
+      }
+    ]
+  },
+  {
     path: '/password',
     name: 'password',
     component: Main,

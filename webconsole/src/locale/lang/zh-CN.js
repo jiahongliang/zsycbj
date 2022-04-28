@@ -6,6 +6,7 @@ export default {
   friend_link_page: '友情链接',
   cms_column_page: '栏目管理',
   cms_article_page: '文章管理',
+  mem_registration_page: '注册信息',
   other_resource: '其他资源',
   other_resource_column_page: '资源栏目',
   other_resource_article_page: '资源文章',

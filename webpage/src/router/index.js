@@ -35,6 +35,19 @@ const routes = [
             }
         ]
     },
+    {
+        path: '/mobile',
+        name: 'mobile',
+        component: () => import('@/views/mobile/index.vue'),
+        redirect: '/mobile/register',
+        children: [
+            {
+                path: '/mobile/register',
+                name: 'mobile_register',
+                component: () => import('@/views/mobile/register/index.vue')
+            },
+        ]
+    },
     
 ];
 

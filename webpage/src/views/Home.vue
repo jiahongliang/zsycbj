@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import PageTop from './components/PageTop.vue';
 import Bottom from './components/Bottom.vue';
 
@@ -21,9 +22,14 @@ export default {
     PageTop,
     Bottom
   },
+  methods: {
+    ...mapActions(['fetchColumnData', 'fetchLinkData']),
+  },
   beforeMount() {
   },
   mounted(){
+    this.fetchColumnData();
+    this.fetchLinkData();
   }
 }
 </script>

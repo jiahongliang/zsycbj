@@ -35,3 +35,11 @@ export const loadArticle = id => {
         method: 'GET'
     })
 }
+
+export const memberRegister = (data) => {
+    return serviceJson({
+        url: '/api/member/register',
+        method: 'POST',
+        data
+    })
+}
