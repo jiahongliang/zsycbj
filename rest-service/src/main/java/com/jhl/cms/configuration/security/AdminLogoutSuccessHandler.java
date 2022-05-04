@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author jiahongliang
+ */
 @Component
 public class AdminLogoutSuccessHandler implements LogoutSuccessHandler {
     @Override

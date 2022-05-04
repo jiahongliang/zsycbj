@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author jiahongliang
+ */
 @Component
 public class AdminAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
     @SneakyThrows

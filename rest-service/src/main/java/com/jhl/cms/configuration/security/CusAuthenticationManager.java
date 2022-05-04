@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
+/**
+ * @author jiahongliang
+ */
 @Component
 public class CusAuthenticationManager implements AuthenticationManager {
 
