@@ -83,8 +83,13 @@ export default {
       return new Promise((resolve, reject) => {
         login(loginToken).then(res => {
           const data = res.data
-          commit('setToken', data.principal)
-          resolve()
+          if (data.authenticated) {
+            commit('setToken', data.principal)
+            resolve()
+          } else {
+            commit('setLoginResult', data.details)
+            reject(new Error(data.details))
+          }
         }).catch(err => {
           commit('setLoginResult', err.response.data)
           reject(err)

@@ -1,7 +1,9 @@
 package com.jhl.cms.configuration.security;
 
+import com.jhl.cms.login.vo.UserVo;
 import com.jhl.cms.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,7 +30,10 @@ public class AdminAuthenticationProvider implements AuthenticationProvider {
         if (!isValid) {
             throw new BadCredentialsException("密码不正确！");
         }
-        return new UsernamePasswordAuthenticationToken(username,"[protected]",user.getAuthorities());
+        AbstractAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, "[protected]", user.getAuthorities());
+        UserVo uvo = userService.getUserInfo(username);
+        token.setDetails(uvo);
+        return token;
     }
 
     @Override

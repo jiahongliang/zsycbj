@@ -17,7 +17,7 @@ public class AdminAuthenticationFailureHandler implements AuthenticationFailureH
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         response.setContentType("application/json;charset=UTF-8");
-        response.setStatus(401);
         response.getWriter().write(exception.getMessage());
+        response.setStatus(401);
     }
 }

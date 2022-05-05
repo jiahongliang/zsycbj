@@ -10,5 +10,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 4. Add the *antd* support by `yarn add antd`.
 
-5. Import the *Base64* component by `yarn add base-64`.
+5. Add the *Base64* component by `yarn add base-64`.
 
+6. Add the *axios* support by `yarn add axios`.

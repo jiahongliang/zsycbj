@@ -34,20 +34,25 @@ public class AdminAuthenticationProcessingFilter extends AbstractAuthenticationP
         String password = obj.getString("password");
         String verifyCode = obj.getString("verifyCode");
 
+        UsernamePasswordAuthenticationToken errorToken = new UsernamePasswordAuthenticationToken("", "");
+
         Object objCode = request.getSession().getAttribute("VerifyCode");
         if (objCode == null) {
-            throw new AuthenticationServiceException("验证码不正确");
+            errorToken.setDetails("验证码不正确");
+            return errorToken;
         }
         String savedVerifyCode = (String) objCode;
         if (!savedVerifyCode.equals(verifyCode)) {
-            throw new AuthenticationServiceException("验证码不正确");
+            errorToken.setDetails("验证码不正确");
+            return errorToken;
         }
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password, null);
         Authentication result = null;
         try {
+            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
             result = this.getAuthenticationManager().authenticate(token);
         } catch (AuthenticationException ex) {
-            throw new AuthenticationServiceException("用户名或密码不正确");
+            errorToken.setDetails("用户名或密码不正确");
+            return errorToken;
         }
         return result;
     }
