@@ -1,0 +1,42 @@
+.console-container {
+    height: 100vh;
+}
+
+.console-container .logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.console-layout .console-layout-background {
+    background: #fff;
+}
+
+.console-container .trigger {
+    padding: 0 12px;
+    font-size: 18px;
+    line-height: 64px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.console-container .trigger:hover {
+    color: #1890ff;
+}
+
+.console-container .console-header .user-center {
+    text-align: right;
+    padding-right: 10px;
+}
+
+.console-container .console-header .user-center .user-icon {
+    padding: 0 6px;
+    font-size: 18px;
+    line-height: 64px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.console-container .console-header .user-center .user-icon:hover {
+    color: #1890ff;
+}

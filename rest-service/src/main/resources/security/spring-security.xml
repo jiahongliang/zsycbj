@@ -9,7 +9,7 @@
     <http entry-point-ref="restAuthenticationEntryPoint">
         <intercept-url pattern="/login" access="permitAll()"/>
         <intercept-url pattern="/logout" access="permitAll()"/>
-        <intercept-url pattern="/verify_code/*" access="permitAll()"/>
+        <intercept-url pattern="/verify_code/**" access="permitAll()"/>
         <intercept-url pattern="/data/**" access="hasRole('ROLE_ADMIN')"/>
 
         <custom-filter ref="adminAuthenticationProcessingFilter" position="BASIC_AUTH_FILTER"/>

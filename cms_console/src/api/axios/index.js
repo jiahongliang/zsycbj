@@ -1,6 +1,7 @@
 import axios from "axios";
 import {message} from 'antd';
 import {createBrowserHistory} from 'history';
+import {LOGIN_USER_TOKEN} from '../../util/Constants'
 
 axios.defaults.timeout = 60000;
 axios.defaults.baseURL = '/api';
@@ -66,7 +67,7 @@ function interceptors(service) {
                         error.message = '请求错误'
                         break
                     case 401:
-                        error.message = '未授权，请登录'
+                        error.message = '未登录或登录超时，请重新登录'
                         showLogin = true;
                         break
                     case 403:
@@ -103,6 +104,7 @@ function interceptors(service) {
             errorLog(error);
             if(showLogin) {
                 setTimeout(() => {
+                    sessionStorage.removeItem(LOGIN_USER_TOKEN);
                     browserHistory.push('/');
                     browserHistory.go();
                 },1000)
