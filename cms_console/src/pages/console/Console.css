@@ -8,8 +8,13 @@
     background: rgba(255, 255, 255, 0.3);
 }
 
-.console-layout .console-layout-background {
+.console-layout {
+    min-width: 1080px;
+}
+
+.console-layout .console-header {
     background: #fff;
+    padding: 0;
 }
 
 .console-container .trigger {
@@ -39,4 +44,31 @@
 
 .console-container .console-header .user-center .user-icon:hover {
     color: #1890ff;
+}
+
+.console-page-tab-container {
+    height: 31px;
+    line-height: 31px;
+    padding: 0px 1px;
+    border-top: 1px solid rgb(217,217,217);
+    border-bottom: 1px solid rgb(217,217,217);
+}
+
+.console-page-tab-container .ant-tag {
+    height: 26px;
+    line-height: 26px;
+    margin: 4px 0px 0 0px;
+    font-size: 12px;
+    border-radius: 5px 5px 0 0;
+}
+
+.console-page-tab-container .actived {
+    color: #1890ff;
+    font-weight: 600;
+}
+
+.console-layout .console-content {
+    background: #fff;
+    margin: 0;
+    padding: 0;
 }
