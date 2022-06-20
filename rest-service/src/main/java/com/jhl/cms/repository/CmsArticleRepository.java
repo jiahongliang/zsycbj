@@ -25,7 +25,7 @@ public interface CmsArticleRepository extends JpaRepository<CmsArticle, Long> {
      * @return
      */
     @RestResource(path = "column-property")
-    public List<CmsArticle> findAllByColumnPropertyOrderByIdDesc(@Param("value") Integer columnProperty);
+    public List<CmsArticle> findAllByColumnPropertyOrderByOrderValueAscLastmodifiedTimeDesc(@Param("value") Integer columnProperty);
 
     /**
      * 根据columnProperty属性查询，不排序
@@ -45,7 +45,7 @@ public interface CmsArticleRepository extends JpaRepository<CmsArticle, Long> {
      * @return
      */
     @RestResource(path = "title_column-property_page")
-    public Page<CmsArticle> findByTitleLikeAndColumnProperty(@Param("title") String title, @Param("columnProperty") Integer columnProperty, Pageable pageable);
+    public Page<CmsArticle> findByTitleLikeAndColumnPropertyOrderByOrderValueAscLastmodifiedTimeDesc(@Param("title") String title, @Param("columnProperty") Integer columnProperty, Pageable pageable);
 
     /**
      * 根据columnProperty属性查询，分页
@@ -55,7 +55,7 @@ public interface CmsArticleRepository extends JpaRepository<CmsArticle, Long> {
      * @return
      */
     @RestResource(path = "column-property_page")
-    public Page<CmsArticle> findByColumnProperty(@Param("columnProperty") Integer columnProperty, Pageable pageable);
+    public Page<CmsArticle> findByColumnPropertyOrderByOrderValueAscLastmodifiedTimeDesc(@Param("columnProperty") Integer columnProperty, Pageable pageable);
 
     /**
      * 根据栏目id查询文章列表
@@ -65,7 +65,7 @@ public interface CmsArticleRepository extends JpaRepository<CmsArticle, Long> {
      * @return
      */
     @RestResource(path = "column-id_page")
-    public Page<CmsArticle> findByColumnId(@Param("columnId") Long columnId, Pageable pageable);
+    public Page<CmsArticle> findByColumnIdOrderByOrderValueAscLastmodifiedTimeDesc(@Param("columnId") Long columnId, Pageable pageable);
 
     /**
      * 根据多个栏目id查询文章列表
@@ -75,7 +75,7 @@ public interface CmsArticleRepository extends JpaRepository<CmsArticle, Long> {
      * @return
      */
     @RestResource(path = "column-ids_page")
-    public Page<CmsArticle> findAllByColumnIdIn(@Param("columnIds") Long[] columnIds, Pageable pageable);
+    public Page<CmsArticle> findAllByColumnIdInOrderByOrderValueAscLastmodifiedTimeDesc(@Param("columnIds") Long[] columnIds, Pageable pageable);
 
     /**
      * 根据栏目id和标题查询文章列表
@@ -86,6 +86,6 @@ public interface CmsArticleRepository extends JpaRepository<CmsArticle, Long> {
      * @return
      */
     @RestResource(path = "column-id_title_page")
-    public Page<CmsArticle> findByColumnIdAndTitleLike(@Param("columnId") Long columnId, @Param("title") String title, Pageable pageable);
+    public Page<CmsArticle> findByColumnIdAndTitleLikeOrderByOrderValueAscLastmodifiedTimeDesc(@Param("columnId") Long columnId, @Param("title") String title, Pageable pageable);
 
 }

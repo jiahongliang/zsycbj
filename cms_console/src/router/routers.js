@@ -1,46 +1,50 @@
 import { useRoutes } from "react-router-dom";
-import Console from "../pages/console/Console";
-import Dashboard from "../pages/console/Dashboard";
-import SlideImage from '../pages/console/SlideImage';
-import Column from "../pages/console/Cms/Column";
-import Article from "../pages/console/Cms/Article";
-import FriendLink from "../pages/console/FriendLink";
-import MemRegistration from "../pages/console/MemRegistration";
-import Login from "../pages/Login";
+import { lazy } from "react";
+import { wrapper } from '../pages';
+
+export const Console = lazy(() => import('../pages/console/Console'));
+export const Dashboard = lazy(() => import('../pages/console/Dashboard'));
+export const SlideImage = lazy(() => import('../pages/console/SlideImage'));
+export const Column = lazy(() => import('../pages/console/Cms/Column'));
+export const Article = lazy(() => import('../pages/console/Cms/Article'));
+export const FriendLink = lazy(() => import('../pages/console/FriendLink'));
+export const MemRegistration = lazy(() => import('../pages/console/MemRegistration'));
+export const Login = lazy(() => import('../pages/Login.jsx'));
+
 
 const GetRoutes = () => {
     const routes = useRoutes([
         {
             path: '/',
-            element: <Login />
+            element: wrapper(Login)
         },
         {
             path: '/console',
-            element: <Console />,
+            element: wrapper(Console),
             children: [
                 {
-                    index:true,
-                    element: <Dashboard />
+                    index: true,
+                    element: wrapper(Dashboard)
                 },
                 {
                     path: '/console/slide_image',
-                    element: <SlideImage />
+                    element: wrapper(SlideImage)
                 },
                 {
                     path: '/console/cms/column',
-                    element: <Column />
+                    element: wrapper(Column)
                 },
                 {
                     path: '/console/cms/article',
-                    element: <Article />
+                    element: wrapper(Article)
                 },
                 {
                     path: '/console/friend_link',
-                    element: <FriendLink />
+                    element: wrapper(FriendLink)
                 },
                 {
                     path: '/console/mem_registration',
-                    element: <MemRegistration />
+                    element: wrapper(MemRegistration)
                 }
             ]
         }

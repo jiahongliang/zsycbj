@@ -1,6 +1,6 @@
 <template>
 <div>
-    <Card style="width:430px;height:400px;margin:0 auto">
+    <Card style="width:430px;height:460px;margin:0 auto">
          <p slot="title">
             上传图片
         </p>
@@ -37,7 +37,10 @@
             <Input v-model="imgForm.title" placeholder="请输入标题..." style="width: 300px" />
          </FormItem>
          <FormItem label="连接">
-        <Input v-model="imgForm.url" placeholder="请输入连接地址..." style="width: 300px" />
+            <Input v-model="imgForm.url" placeholder="请输入连接地址..." style="width: 300px" />
+         </FormItem>
+         <FormItem label="排序号">
+            <Input-number :max="10000" :min="1" v-model="imgForm.orderValue" placeholder="请输入排序号..." ></Input-number>
          </FormItem>
         </Form>
     </Card>
@@ -76,7 +79,8 @@ export default {
         iconId: null,
         imgUrl: '',
         title: '',
-        url: ''
+        url: '',
+        orderValue: '100'
       }
     }
   },
@@ -91,6 +95,7 @@ export default {
       this.imgForm.imgUrl = '/api/attachment/get/' + file.iconId
       this.imgForm.title = file.title
       this.imgForm.url = file.url
+      this.imgForm.orderValue = file.orderValue
     },
     handleRemove (file) {
       Modal.confirm({
@@ -134,6 +139,7 @@ export default {
       this.imgForm.imgUrl = ''
       this.imgForm.title = ''
       this.imgForm.url = ''
+      this.imgForm.orderValue = '100'
     },
     handleSaveImg () {
       if (this.imgForm.iconId == null) {

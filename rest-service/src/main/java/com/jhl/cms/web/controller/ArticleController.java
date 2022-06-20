@@ -33,7 +33,7 @@ public class ArticleController {
 
         Sort sort = Sort.by(Sort.Direction.ASC, "orderValue").and(Sort.by(Sort.Direction.DESC, "id"));
         Pageable pageable = PageRequest.of(req.getPageNum() - 1, req.getPageSize(), sort);
-        return articleRepository.findByColumnId(req.getEntity().getColumnId(), pageable);
+        return articleRepository.findByColumnIdOrderByOrderValueAscLastmodifiedTimeDesc(req.getEntity().getColumnId(), pageable);
     }
 
     @PostMapping("all_list")
@@ -42,7 +42,7 @@ public class ArticleController {
 
         Sort sort = Sort.by(Sort.Direction.ASC, "orderValue").and(Sort.by(Sort.Direction.DESC, "id"));
         Pageable pageable = PageRequest.of(req.getPageNum() - 1, req.getPageSize(), sort);
-        return articleRepository.findAllByColumnIdIn(req.getExt(), pageable);
+        return articleRepository.findAllByColumnIdInOrderByOrderValueAscLastmodifiedTimeDesc(req.getExt(), pageable);
     }
 
     @GetMapping("info/{id}")
@@ -57,11 +57,11 @@ public class ArticleController {
 
     @GetMapping("slide_images")
     List<CmsArticle>  slideImages() {
-        return articleRepository.findAllByColumnPropertyOrderByIdDesc(Constants.COLUMN_PROPERTY_SLIDE_IMAGE);
+        return articleRepository.findAllByColumnPropertyOrderByOrderValueAscLastmodifiedTimeDesc(Constants.COLUMN_PROPERTY_SLIDE_IMAGE);
     }
 
     @GetMapping("friend_link")
     List<CmsArticle>  friendLinks() {
-        return articleRepository.findAllByColumnProperty(Constants.COLUMN_PROPERTY_LINK);
+        return articleRepository.findAllByColumnPropertyOrderByOrderValueAscLastmodifiedTimeDesc(Constants.COLUMN_PROPERTY_LINK);
     }
 }

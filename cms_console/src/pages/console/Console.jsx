@@ -67,6 +67,12 @@ const Console = () => {
                 navigateTabs.forEach(item => {
                     if (item.url === location.pathname) {
                         item.actived = true;
+
+                        let pathArr = [];
+                        item.keyPath.slice().reverse().forEach(item => {
+                            pathArr.push(getMenuItem(item));
+                        });
+                        setPathNode(pathArr);
                     } else {
                         item.actived = false;
                     }

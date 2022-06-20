@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-class Dashboard extends React.Component {
-    render() {
-        return (
-            <div>
-                This is the Dashboard page.
-            </div>
-        );
-    }
+const  Dashboard = () => {
+
+    useEffect(() => {
+        console.log('Dashboard Page mounted.');
+    },[]);
+
+    return (
+        <div>
+            This is the Dashboard page.
+        </div>
+    );
 }
 export default Dashboard;

@@ -28,6 +28,9 @@
                     <FormItem label="连接地址" prop="url">
                         <Input v-model="dataForm.url" placeholder="请输入连接地址..." style="width: 300px" />
                     </FormItem>
+                    <FormItem label="排序号">
+                        <Input-number :max="10000" :min="1" v-model="dataForm.orderValue" placeholder="请输入排序号..." ></Input-number>
+                    </FormItem>
                     <div class="buttonBorder">
                         <Button type="primary" class="dialogButton" @click="saveData"> 保 存 </Button> <Button class="dialogButton" @click="closeDialog"> 关 闭 </Button>
                     </div>
@@ -93,7 +96,8 @@ export default {
         url: '',
         id: null,
         columnProperty: null,
-        columnId: null
+        columnId: null,
+        orderValue: '100'
       },
       dataFormRules: {
         title: [
@@ -153,6 +157,7 @@ export default {
       this.dataForm.id = item.id
       this.dataForm.title = item.title
       this.dataForm.url = item.url
+      this.dataForm.orderValue = item.orderValue
       this.infoDialogVisible = true
     },
     handleRemove (item) {
@@ -185,6 +190,7 @@ export default {
       this.dataForm.title = ''
       this.dataForm.url = ''
       this.dataForm.id = null
+      this.dataForm.orderValue = '100'
     },
     saveData () {
       this.$refs['dataForm'].validate((valid) => {
@@ -257,7 +263,7 @@ export default {
 .dialogCard {
     position: absolute;
     width: 410px;
-    height: 250px;
+    height: 300px;
     left: 0;
     top: 0;
     right: 0;
